@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>EDUWALLET Automated Test Suite</title>
+</head>
+<body>
+<div id="test-results"></div>
+<script src="js/storage.js"></script>
+<script src="js/calculations.js"></script>
+<script src="js/charts.js"></script>
+<script src="js/transactions.js"></script>
+<script src="js/budgets.js"></script>
+<script src="js/goals.js"></script>
+<script src="js/daily-spend.js"></script>
+<script src="js/need-want.js"></script>
+<script src="js/income-planner.js"></script>
+<script src="js/insights.js"></script>
+<script src="js/learn.js"></script>
+<script src="js/reports.js"></script>
+<script src="js/settings.js"></script>
+
+<script>
+const tests = [];
+function test(name, fn) {
+  try {
+    fn();
+    tests.push({ name, status: 'PASS' });
+    console.log(`[PASS] ${name}`);
+  } catch (e) {
+    tests.push({ name, status: 'FAIL', error: e.message });
+    console.error(`[FAIL] ${name}:`, e);
+  }
+}
+
+function assert(condition, message) {
+  if (!condition) throw new Error(message || 'Assertion failed');
+}
+
+// 1. Storage & Demo Data Test
+test('Demo Data Generation and Profile Persistence', () => {
+  StorageManager.clearAllData();
+  const res = StorageManager.loadDemoData();
+  assert(res === true, 'loadDemoData failed');
+  const profile = StorageManager.getProfile();
+  assert(profile.nickname === 'Alex', 'Profile nickname should be Alex');
+  assert(profile.currency === 'INR', 'Currency should be INR');
+  const txs = StorageManager.getTransactions();
+  assert(txs.length >= 10, 'Expected at least 10 demo transactions, got ' + txs.length);
+});
+
+// 2. Calculations Balance & Metrics Test
+test('Financial Balance and Month Summary Calculations', () => {
+  const txs = StorageManager.getTransactions();
+  const bal = Calculations.calculateBalance(txs);
+  assert(bal.totalIncome > 0, 'Total income must be positive');
+  assert(bal.totalExpenses > 0, 'Total expenses must be positive');
+  assert(bal.balance === Math.round((bal.totalIncome - bal.totalExpenses) * 100) / 100, 'Balance must match income - expenses');
+
+  const now = new Date();
+  const summary = Calculations.calculateMonthSummary(txs, now.getFullYear(), now.getMonth(), 8000);
+  assert(summary.totalIncome >= 8000, 'Month income should include family allowance');
+  assert(summary.totalExpenses > 0, 'Month expenses should be > 0');
+  assert(summary.remainingBudget === Math.round((8000 - summary.totalExpenses) * 100) / 100, 'Remaining budget match');
+});
+
+// 3. Currency Formatting Test
+test('Currency Formatter Intl.NumberFormat', () => {
+  const formattedINR = Calculations.formatCurrency(8000, 'INR');
+  assert(formattedINR.includes('8,000') || formattedINR.includes('8000'), 'INR formatting failed: ' + formattedINR);
+
+  const formattedUSD = Calculations.formatCurrency(1250.5, 'USD');
+  assert(formattedUSD.includes('1,250.5') || formattedUSD.includes('$'), 'USD formatting failed: ' + formattedUSD);
+});
+
+// 4. Budget Threshold Calculations (<75%, 75-90%, 90-100%, >100%)
+test('Budget Threshold Evaluation', () => {
+  const normal = Calculations.evaluateBudgetThreshold(1000, 500);
+  assert(normal.status === 'normal', 'Expected normal, got ' + normal.status);
+
+  const approaching = Calculations.evaluateBudgetThreshold(1000, 800);
+  assert(approaching.status === 'approaching', 'Expected approaching, got ' + approaching.status);
+
+  const nearly = Calculations.evaluateBudgetThreshold(1000, 950);
+  assert(nearly.status === 'nearly_exhausted', 'Expected nearly_exhausted, got ' + nearly.status);
+
+  const over = Calculations.evaluateBudgetThreshold(1000, 1100);
+  assert(over.status === 'over_budget', 'Expected over_budget, got ' + over.status);
+});
+
+// 5. Daily Spend Guide Calculation
+test('Daily Spend Guide Calculation and Zero Denominator Safety', () => {
+  const guide = Calculations.calculateDailySpendGuide(3000, 10, 200);
+  assert(guide.suggestedDaily === 300, 'Expected 300, got ' + guide.suggestedDaily);
+  assert(guide.isOverSpentToday === false, 'Should not be overspent today');
+
+  // Exhausted budget
+  const exhausted = Calculations.calculateDailySpendGuide(-200, 5, 50);
+  assert(exhausted.isExhausted === true, 'Should flag exhausted');
+  assert(exhausted.suggestedDaily === 0, 'Allowance should be 0 when negative');
+
+  // Zero remaining days safety
+  const safeDiv = Calculations.calculateDailySpendGuide(500, 0, 0);
+  assert(!isNaN(safeDiv.suggestedDaily) && isFinite(safeDiv.suggestedDaily), 'Division by zero must be guarded');
+});
+
+// 6. Savings Goals Contribution
+test('Savings Goals CRUD and Contribution', () => {
+  const initialGoals = StorageManager.getGoals();
+  const goal = initialGoals[0];
+  const initialAmt = goal.currentAmount;
+  const updated = StorageManager.contributeToGoal(goal.id, 500, 'Test Deposit');
+  assert(updated.currentAmount === initialAmt + 500, 'Contribution did not add properly');
+  assert(updated.history.length > 0, 'History should record deposit');
+});
+
+// 7. Income Planner - No Double Counting
+test('Income Schedule Mark Received & No Double Counting', () => {
+  const schedule = StorageManager.getIncomeSchedule();
+  const pending = schedule.find(i => i.status === 'expected');
+  assert(pending, 'Expected to find pending scheduled item');
+
+  const prevTxCount = StorageManager.getTransactions().length;
+  const res = StorageManager.markIncomeReceived(pending.id);
+  assert(res.success === true, 'markIncomeReceived failed');
+  assert(res.item.status === 'received', 'Item status must be received');
+  assert(res.item.transactionId !== null, 'Item must have transactionId');
+
+  const newTxCount = StorageManager.getTransactions().length;
+  assert(newTxCount === prevTxCount + 1, 'Exactly one transaction should be added');
+
+  // Try marking again - must not duplicate!
+  const dupRes = StorageManager.markIncomeReceived(pending.id);
+  assert(dupRes.success === false, 'Should prevent double-marking received income');
+  assert(StorageManager.getTransactions().length === newTxCount, 'Transactions must not duplicate');
+});
+
+// 8. Need vs Want Analyzer
+test('Need or Want Decision Engine', () => {
+  const itemNeed = { amount: 300, type: 'need', answers: { needToday: 'yes', canBorrow: 'no', wait24Hours: 'no' } };
+  const evalNeed = Calculations.evaluateNeedOrWant(itemNeed, 5000, 3000, 15);
+  assert(evalNeed.score >= 70, 'Essential need should score high');
+
+  const itemWant = { amount: 3500, type: 'want', answers: { needToday: 'no', canBorrow: 'yes', wait24Hours: 'yes', impactsSavings: 'yes' } };
+  const evalWant = Calculations.evaluateNeedOrWant(itemWant, 2000, 1000, 20);
+  assert(evalWant.score < 45, 'Expensive want with small budget should trigger impulse alert');
+  assert(evalWant.badge === 'badge-danger', 'Expected danger badge for high risk impulse');
+});
+
+// 9. JSON Backup and Restore
+test('JSON Backup and Import Validation', () => {
+  const backup = StorageManager.exportAllData();
+  assert(typeof backup === 'string' && backup.length > 100, 'Export backup should produce valid JSON string');
+
+  // Import invalid JSON
+  const invalidRes = StorageManager.importAllData('{"not": "valid eduwallet"}');
+  assert(invalidRes.success === false, 'Invalid backup must be rejected without crashing');
+
+  // Import valid backup
+  const validRes = StorageManager.importAllData(backup);
+  assert(validRes.success === true, 'Valid backup should import successfully');
+});
+
+// 10. Month-Over-Month Comparison
+test('Month-Over-Month Comparison with Demo Data', () => {
+  const txs = StorageManager.getTransactions();
+  const now = new Date();
+  const comp = Calculations.compareMonths(txs, now.getFullYear(), now.getMonth());
+  assert(comp.hasPreviousData === true, 'Demo data should include previous month records');
+  assert(typeof comp.expenseDiff === 'number', 'Expense diff must be number');
+});
+
+// Summary
+const total = tests.length;
+const passed = tests.filter(t => t.status === 'PASS').length;
+const summaryText = `TEST SUITE COMPLETED: ${passed} / ${total} PASSED`;
+console.log(summaryText);
+
+document.getElementById('test-results').innerHTML = `
+  <h1>${summaryText}</h1>
+  <ul>
+    ${tests.map(t => `<li style="color: ${t.status === 'PASS' ? 'green' : 'red'};">[${t.status}] ${t.name} ${t.error ? ': ' + t.error : ''}</li>`).join('')}
+  </ul>
+`;
+</script>
+</body>
+</html>

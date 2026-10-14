@@ -1,0 +1,1504 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EDUWALLET — Smart Student Finance & Budget Planner</title>
+  <meta name="description" content="EDUWALLET helps students manage limited money, track daily spending, plan monthly budgets, set savings goals, and build disciplined financial habits.">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23176B4D'><path d='M20 7H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zm-2 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4z'/></svg>">
+</head>
+<body>
+
+<div class="app-container">
+
+  <!-- Desktop Sidebar Navigation -->
+  <aside class="sidebar" id="app-sidebar">
+    <div class="sidebar-header">
+      <a href="#dashboard" class="brand-link">
+        <div class="brand-icon-wrapper">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="5" width="20" height="14" rx="3"/>
+            <line x1="2" y1="10" x2="22" y2="10"/>
+            <circle cx="17" cy="14" r="1.5"/>
+          </svg>
+        </div>
+        <div class="brand-text-wrap">
+          <span class="brand-name">EDUWALLET</span>
+          <span class="brand-badge">STUDENT</span>
+        </div>
+      </a>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a href="#dashboard" class="nav-link" data-nav-route="dashboard">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        <span>Dashboard</span>
+      </a>
+      <a href="#transactions" class="nav-link" data-nav-route="transactions">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        <span>Transactions</span>
+      </a>
+      <a href="#budgets" class="nav-link" data-nav-route="budgets">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></svg>
+        <span>Budgets</span>
+      </a>
+      <a href="#goals" class="nav-link" data-nav-route="goals">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+        <span>Savings Goals</span>
+      </a>
+      <a href="#daily-spend" class="nav-link" data-nav-route="daily-spend">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <span>Daily Spend Guide</span>
+      </a>
+      <a href="#need-want" class="nav-link" data-nav-route="need-want">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <span>Need or Want?</span>
+      </a>
+      <a href="#income-planner" class="nav-link" data-nav-route="income-planner">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        <span>Income Planner</span>
+      </a>
+
+      <div class="nav-divider"></div>
+
+      <a href="#insights" class="nav-link" data-nav-route="insights">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+        <span>Insights</span>
+      </a>
+      <a href="#learn" class="nav-link" data-nav-route="learn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        <span>Learn & Quiz</span>
+      </a>
+      <a href="#reports" class="nav-link" data-nav-route="reports">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        <span>Reports</span>
+      </a>
+      <a href="#settings" class="nav-link" data-nav-route="settings">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        <span>Settings</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <p class="font-semibold">EDUWALLET v1.0</p>
+      <p>Your money. Your goals. Your future.</p>
+    </div>
+  </aside>
+
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <!-- Main View Wrapper -->
+  <div class="main-wrapper">
+
+    <!-- Sticky Top Header -->
+    <header class="top-header">
+      <div class="header-left">
+        <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle Navigation">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+        <div class="header-greeting-wrap">
+          <h2 class="header-greeting" id="header-greeting">Hey, Student!</h2>
+          <span class="header-subtitle">Here's your personal money snapshot</span>
+        </div>
+      </div>
+
+      <div class="header-right">
+        <!-- Month Picker -->
+        <select class="month-selector" id="global-month-selector" aria-label="Select Active Month">
+          <!-- Populated by App.initMonthSelector() -->
+        </select>
+
+        <!-- Quick Add Button -->
+        <button class="btn btn-primary btn-sm btn-quick-add" aria-label="Quick Add Transaction">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          <span>Add Spend</span>
+        </button>
+
+        <!-- Theme Toggle -->
+        <button class="btn-icon-subtle" id="header-theme-toggle" title="Toggle Theme" aria-label="Toggle Theme">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+
+        <!-- Avatar Initials -->
+        <div class="avatar-circle" id="header-avatar-initials" title="Active Student">A</div>
+      </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="content-area">
+
+      <!-- ==============================================
+           1. DASHBOARD VIEW
+           ============================================== -->
+      <section id="view-dashboard" class="app-view">
+        <!-- Tip of the Day Banner -->
+        <div class="tip-banner">
+          <div class="tip-content">
+            <span class="tip-icon">💡</span>
+            <div>
+              <strong>Student Tip:</strong>
+              <span id="tip-text">Checking in daily keeps student financial panic away.</span>
+            </div>
+          </div>
+          <button class="tip-shuffle-btn" id="tip-shuffle-btn" title="Next tip" aria-label="Shuffle Tip">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+          </button>
+        </div>
+
+        <!-- Budget Warning Alert Banner -->
+        <div id="dash-budget-warning-banner" style="display: none;"></div>
+
+        <!-- 6 Summary Metrics Cards -->
+        <div class="grid-6">
+          <div class="card metric-card">
+            <div class="metric-header">
+              <span>Available Balance</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+            </div>
+            <div class="metric-val text-success" id="dash-balance">₹0</div>
+            <div class="metric-sub">Total cash in hand</div>
+          </div>
+
+          <div class="card metric-card">
+            <div class="metric-header">
+              <span>Monthly Income</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
+            </div>
+            <div class="metric-val" id="dash-income">₹0</div>
+            <div class="metric-sub">Allowances & earnings</div>
+          </div>
+
+          <div class="card metric-card">
+            <div class="metric-header">
+              <span>Expenses This Month</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--expense-coral)" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
+            </div>
+            <div class="metric-val text-danger" id="dash-expenses">₹0</div>
+            <div class="metric-sub">Outflows recorded</div>
+          </div>
+
+          <div class="card metric-card">
+            <div class="metric-header">
+              <span>Budget Remaining</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--warning-amber)" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 14 14"/></svg>
+            </div>
+            <div class="metric-val" id="dash-budget-remaining">₹0</div>
+            <div class="metric-sub">From monthly cap</div>
+          </div>
+
+          <div class="card metric-card">
+            <div class="metric-header">
+              <span>Total Savings</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--savings-accent)" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div class="metric-val" id="dash-savings-total">₹0</div>
+            <div class="metric-sub">Across all goals</div>
+          </div>
+
+          <div class="card metric-card">
+            <div class="metric-header">
+              <span>Daily Spend Guide</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            </div>
+            <div class="metric-val" id="dash-daily-suggested">₹0</div>
+            <div class="metric-sub">Safe daily allowance</div>
+          </div>
+        </div>
+
+        <!-- Middle Charts Row -->
+        <div class="grid-2">
+          <!-- Daily Spend Trend Chart -->
+          <div class="card">
+            <div class="dash-card-header">
+              <h3 class="dash-card-title">Daily Spending Timeline</h3>
+              <span class="text-xs text-muted">Days of Month</span>
+            </div>
+            <div id="dash-daily-chart"></div>
+          </div>
+
+          <!-- Category Breakdown Donut Chart -->
+          <div class="card">
+            <div class="dash-card-header">
+              <h3 class="dash-card-title">Category Breakdown</h3>
+              <a href="#budgets" class="text-xs font-semibold text-primary">Manage Budgets →</a>
+            </div>
+            <div id="dash-category-donut"></div>
+          </div>
+        </div>
+
+        <!-- Bottom Row: Recent Transactions & Active Goals -->
+        <div class="grid-2">
+          <!-- Recent Transactions -->
+          <div class="card">
+            <div class="dash-card-header">
+              <h3 class="dash-card-title">Recent Transactions</h3>
+              <a href="#transactions" class="text-xs font-semibold text-primary">View All →</a>
+            </div>
+            <div id="dash-recent-tx-list"></div>
+            <div id="dash-recent-tx-empty" class="empty-state-card" style="display: none;">
+              <p class="empty-state-text">No spending recorded for this month yet.</p>
+              <button class="btn btn-primary btn-sm btn-quick-add">Record First Transaction</button>
+            </div>
+          </div>
+
+          <!-- Active Goals & Budget Health -->
+          <div class="card">
+            <div class="dash-card-header">
+              <h3 class="dash-card-title">Savings Goals & Pace</h3>
+              <a href="#goals" class="text-xs font-semibold text-primary">Explore Goals →</a>
+            </div>
+            <div class="dash-budget-ring-wrapper text-center mb-3" style="display: flex; justify-content: center; margin-bottom: 1.25rem;">
+              <div id="dash-budget-ring"></div>
+            </div>
+            <div id="dash-goals-preview"></div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ==============================================
+           2. TRANSACTIONS VIEW
+           ============================================== -->
+      <section id="view-transactions" class="app-view">
+        <div class="view-header">
+          <div class="view-title-group">
+            <h1>Transaction Manager</h1>
+            <p>Search, filter, and track every rupee spent or received</p>
+          </div>
+          <button class="btn btn-primary btn-quick-add">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Add Transaction
+          </button>
+        </div>
+
+        <!-- Filter & Search Controls -->
+        <div class="filter-bar">
+          <div class="search-input-wrap">
+            <svg class="search-icon-inside" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="text" class="form-input" id="tx-search-input" placeholder="Search by description, note, or category...">
+          </div>
+
+          <select class="form-select" id="tx-type-filter" style="width: auto;">
+            <option value="all">All Types</option>
+            <option value="expense">Expenses Only</option>
+            <option value="income">Income Only</option>
+          </select>
+
+          <select class="form-select" id="tx-category-filter" style="width: auto;">
+            <option value="all">All Categories</option>
+          </select>
+
+          <input type="date" class="form-input" id="tx-date-from" title="From Date" style="width: auto;">
+          <input type="date" class="form-input" id="tx-date-to" title="To Date" style="width: auto;">
+
+          <select class="form-select" id="tx-sort-select" style="width: auto;">
+            <option value="newest">Newest First</option>
+            <option value="oldest">Oldest First</option>
+            <option value="highest">Highest Amount</option>
+            <option value="lowest">Lowest Amount</option>
+          </select>
+
+          <button class="btn btn-secondary btn-sm" id="tx-clear-filters-btn">Clear</button>
+        </div>
+
+        <!-- Summary Bar -->
+        <div class="tx-summary-bar">
+          <span id="tx-summary-count">0 transactions</span>
+          <div>
+            <span class="mr-3">Income: <strong class="text-success" id="tx-summary-income">₹0</strong></span>
+            <span class="ml-2">Spent: <strong class="text-danger" id="tx-summary-expense">₹0</strong></span>
+          </div>
+        </div>
+
+        <!-- Desktop Transactions Table -->
+        <div class="table-responsive desktop-only">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Category</th>
+                <th>Type</th>
+                <th class="text-right">Amount</th>
+                <th class="text-right">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="transactions-table-body">
+              <!-- Populated by TransactionManager.renderTransactionList() -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Mobile Card List View -->
+        <div id="transactions-cards-list"></div>
+
+        <!-- Empty State -->
+        <div id="transactions-empty-state" class="empty-state-card" style="display: none;">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--text-light)" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+          <p class="empty-state-text">No transactions found matching your filters. Add your first expense or clear search criteria.</p>
+          <button class="btn btn-primary btn-sm btn-quick-add">Add Transaction</button>
+        </div>
+      </section>
+
+
+      <!-- ==============================================
+           3. BUDGETS VIEW
+           ============================================== -->
+      <section id="view-budgets" class="app-view">
+        <div class="view-header">
+          <div class="view-title-group">
+            <h1>Smart Monthly Budget Planner</h1>
+            <p>Set spending caps per category and receive dynamic threshold warnings</p>
+          </div>
+          <div style="display: flex; gap: 0.5rem;">
+            <button class="btn btn-secondary" id="edit-total-budget-btn">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+              Edit Monthly Cap
+            </button>
+            <button class="btn btn-primary" id="add-cat-budget-btn">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              Set Category Limit
+            </button>
+          </div>
+        </div>
+
+        <!-- Total Monthly Budget Status Card -->
+        <div class="card mb-4" style="margin-bottom: 1.5rem;">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.75rem;">
+            <div>
+              <span class="text-xs text-muted font-semibold uppercase">Total Monthly Budget</span>
+              <div class="text-2xl font-bold" id="budget-total-amount" style="font-size: 1.85rem; color: var(--primary-dark);">₹0</div>
+            </div>
+            <span class="badge" id="budget-overall-status-badge">Normal</span>
+          </div>
+
+          <div class="progress-bar-track" style="height: 10px;">
+            <div class="progress-bar-fill" id="budget-overall-progress" style="width: 0%;"></div>
+          </div>
+
+          <div style="display: flex; justify-content: space-between; margin-top: 0.75rem; font-size: 0.85rem;">
+            <div>
+              <span class="text-muted">Total Spent: </span>
+              <strong id="budget-total-spent">₹0</strong>
+            </div>
+            <div>
+              <span id="budget-remaining-label" class="text-muted">Remaining Budget: </span>
+              <strong id="budget-total-remaining">₹0</strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- Allocation vs Unallocated Summary -->
+        <div class="card mb-4" style="margin-bottom: 1.5rem; background: var(--bg-warm);">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem;">
+            <div>
+              <span class="font-semibold">Category Allocations: </span>
+              <span id="budget-allocated-amt" class="font-bold">₹0</span>
+            </div>
+            <div>
+              <span class="font-semibold">Unallocated Buffer: </span>
+              <span id="budget-unallocated-amt" class="font-bold">₹0</span>
+            </div>
+            <span class="text-xs text-muted">Keep a buffer for unexpected hostel/academic emergencies.</span>
+          </div>
+        </div>
+
+        <!-- Dynamic Warnings Banner -->
+        <div id="budget-active-warnings" style="margin-bottom: 1.5rem;"></div>
+
+        <!-- Threshold Legend -->
+        <div style="display: flex; gap: 1rem; margin-bottom: 1rem; font-size: 0.75rem; flex-wrap: wrap;">
+          <span class="badge badge-success">Under 75%: Normal</span>
+          <span class="badge badge-warning">75% - 89%: Approaching Limit</span>
+          <span class="badge badge-warning-dark">90% - 100%: Nearly Exhausted</span>
+          <span class="badge badge-danger">Above 100%: Over Budget</span>
+        </div>
+
+        <!-- Category Budgets Grid -->
+        <div class="grid-3" id="category-budgets-grid">
+          <!-- Populated by BudgetManager.renderBudgetPage() -->
+        </div>
+      </section>
+
+
+      <!-- ==============================================
+           4. SAVINGS GOALS VIEW
+           ============================================== -->
+      <section id="view-goals" class="app-view">
+        <div class="view-header">
+          <div class="view-title-group">
+            <h1>Student Savings Goals</h1>
+            <p>Save systematically for a laptop, trip, certification, or emergency buffer</p>
+          </div>
+          <button class="btn btn-primary" id="add-goal-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Create New Goal
+          </button>
+        </div>
+
+        <!-- Savings Overview Banner -->
+        <div class="card mb-4" style="margin-bottom: 1.5rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+            <div>
+              <span class="text-xs text-muted uppercase font-semibold">Total Saved Across Goals</span>
+              <div class="text-2xl font-bold text-success" id="goals-total-saved" style="font-size: 1.75rem;">₹0</div>
+            </div>
+            <div>
+              <span class="text-xs text-muted uppercase font-semibold">Total Target Value</span>
+              <div class="text-xl font-bold" id="goals-total-target" style="font-size: 1.4rem;">₹0</div>
+            </div>
+          </div>
+          <div class="progress-bar-track" style="margin-top: 1rem;">
+            <div class="progress-bar-fill" id="goals-overall-progress" style="width: 0%; background-color: var(--savings-accent);"></div>
+          </div>
+          <p class="text-xs text-muted mt-2" style="margin-top: 0.5rem;">
+            * Savings goals are local tracking targets to build financial discipline. No money is moved into real bank accounts.
+          </p>
+        </div>
+
+        <!-- Goals Grid -->
+        <div class="grid-3" id="goals-grid">
+          <!-- Populated by GoalManager.renderGoalsPage() -->
+        </div>
+
+        <!-- Empty State -->
+        <div id="goals-empty-state" class="empty-state-card" style="display: none;">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--text-light)" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+          <p class="empty-state-text">No savings goals created yet. Goal-setting helps resist impulse temptations and build pride in your milestones.</p>
+          <button class="btn btn-primary" onclick="GoalManager.openAddModal()">Set Your First Goal</button>
+        </div>
+      </section>
+
+
+      <!-- ==============================================
+           5. DAILY SPEND GUIDE VIEW
+           ============================================== -->
+      <section id="view-daily-spend" class="app-view">
+        <div class="view-header">
+          <div class="view-title-group">
+            <h1>Daily Spend Guide</h1>
+            <p>Indicative safe spending pace: Remaining Budget ÷ Remaining Days in Month</p>
+          </div>
+        </div>
+
+        <!-- Hero Card -->
+        <div class="ds-hero-card">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem;">
+            <div>
+              <span class="text-xs uppercase font-semibold text-muted">Recommended Daily Spending</span>
+              <div class="ds-big-number" id="ds-suggested-daily">₹0</div>
+              <span class="text-xs text-muted">Per day for the rest of this month</span>
+            </div>
+            <span class="badge" id="ds-today-status-badge">Calculating</span>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1.25rem; margin-top: 1.5rem; border-top: 1px solid var(--border-color); padding-top: 1.25rem;">
+            <div>
+              <span class="text-xs text-muted uppercase font-semibold">Remaining Budget</span>
+              <div class="font-bold text-lg" id="ds-remaining-budget">₹0</div>
+            </div>
+            <div>
+              <span class="text-xs text-muted uppercase font-semibold">Days Left in Month</span>
+              <div class="font-bold text-lg" id="ds-remaining-days">0 Days</div>
+            </div>
+            <div>
+              <span class="text-xs text-muted uppercase font-semibold">Spent Today</span>
+              <div class="font-bold text-lg text-danger" id="ds-today-spent">₹0</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dynamic Guidance Box -->
+        <div id="ds-alert-box" class="alert alert-success">
+          <!-- Filled dynamically -->
+        </div>
+
+        <!-- "What-If" Spending Simulator -->
+        <div class="card mt-4">
+          <div class="dash-card-header">
+            <h3 class="dash-card-title">What-If Spending Simulator</h3>
+            <span class="text-xs text-muted">Instant Pacing Impact</span>
+          </div>
+          <p class="text-xs text-muted mb-3" style="margin-bottom: 1rem;">
+            Thinking about buying something today? Enter the amount to preview how it will change your daily allowance for tomorrow onward.
+          </p>
+
+          <div class="form-group" style="max-width: 320px;">
+            <label class="form-label" for="ds-sim-input">Planned Spend Today (₹)</label>
+            <input type="number" id="ds-sim-input" class="form-input" placeholder="e.g. 400" min="0" step="10">
+          </div>
+
+          <div style="background: var(--bg-warm); padding: 1rem; border-radius: var(--radius-md); border: 1px solid var(--border-color);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
+              <span class="font-semibold text-sm">Tomorrow's Adjusted Daily Allowance:</span>
+              <strong class="text-md text-primary" id="ds-sim-new-daily">₹0</strong>
+            </div>
+            <p id="ds-sim-impact" class="text-xs text-muted"></p>
+          </div>
+
+          <p class="legal-disclaimer">
+            * Note: The Daily Spend Guide is a mathematical planning aid, not a guarantee of future affordability. If your budget is exhausted, daily allowance drops to zero.
+          </p>
+        </div>
+      </section>
+
+
+      <!-- ==============================================
+           6. NEED OR WANT? CHECKER VIEW
+           ============================================== -->
+      <section id="view-need-want" class="app-view">
+        <div class="view-header">
+          <div class="view-title-group">
+            <h1>Need or Want? Purchase Analyzer</h1>
+            <p>Reflect before checkout to break impulse spending patterns</p>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <!-- Form Card -->
+          <div class="card">
+            <h3 class="dash-card-title mb-3" style="margin-bottom: 1rem;">Assess Planned Purchase</h3>
+
+            <form id="need-want-form">
+              <div class="form-group">
+                <label class="form-label" for="nw-item-name">What are you planning to buy?</label>
+                <input type="text" id="nw-item-name" class="form-input" placeholder="e.g. Branded Hoodie, Gaming Mouse, Swiggy Pizza" required>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="nw-item-amount">Price / Cost (₹)</label>
+                <input type="number" id="nw-item-amount" class="form-input" placeholder="e.g. 1200" min="1" step="1" required>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="nw-item-cat">Category</label>
+                <select id="nw-item-cat" class="form-select">
+                  <option value="shopping">Shopping</option>
+                  <option value="food">Food & Snacks</option>
+                  <option value="entertainment">Entertainment</option>
+                  <option value="books">Books & Stationery</option>
+                  <option value="recharge">Mobile & Internet</option>
+                  <option value="other_expense">Other</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">How would you classify this?</label>
+                <div class="radio-pill-group">
+                  <input type="radio" name="nw-type" id="nw-type-need" value="need">
+                  <label for="nw-type-need">Essential Need</label>
+
+                  <input type="radio" name="nw-type" id="nw-type-postpone" value="postponable">
+                  <label for="nw-type-postpone">Postponable</label>
+
+                  <input type="radio" name="nw-type" id="nw-type-want" value="want" checked>
+                  <label for="nw-type-want">Pure Want</label>
+                </div>
+              </div>
+
+              <!-- Reflection Rubric -->
+              <div style="border-top: 1px solid var(--border-color); padding-top: 1rem; margin-top: 1rem;">
+                <span class="font-semibold text-xs text-muted uppercase">Student Reflection Checklist:</span>
+
+                <div class="form-group mt-2" style="margin-top: 0.5rem;">
+                  <span class="text-xs">Do I urgently need this today?</span>
+                  <div style="display: flex; gap: 1rem; margin-top: 0.25rem;">
+                    <label class="text-xs"><input type="radio" name="ref-urgent" value="yes"> Yes</label>
+                    <label class="text-xs"><input type="radio" name="ref-urgent" value="no" checked> No</label>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <span class="text-xs">Can I borrow or share this from a hostel mate?</span>
+                  <div style="display: flex; gap: 1rem; margin-top: 0.25rem;">
+                    <label class="text-xs"><input type="radio" name="ref-borrow" value="yes"> Yes</label>
+                    <label class="text-xs"><input type="radio" name="ref-borrow" value="no" checked> No</label>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <span class="text-xs">Will buying this jeopardize my savings goal?</span>
+                  <div style="display: flex; gap: 1rem; margin-top: 0.25rem;">
+                    <label class="text-xs"><input type="radio" name="ref-savings" value="yes" checked> Yes</label>
+                    <label class="text-xs"><input type="radio" name="ref-savings" value="no"> No</label>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <span class="text-xs">Can I sleep on this for 24 hours before deciding?</span>
+                  <div style="display: flex; gap: 1rem; margin-top: 0.25rem;">
+                    <label class="text-xs"><input type="radio" name="ref-wait" value="yes" checked> Yes</label>
+                    <label class="text-xs"><input type="radio" name="ref-wait" value="no"> No</label>
+                  </div>
+                </div>
+              </div>
+
+              <div style="display: flex; gap: 0.75rem; margin-top: 1.25rem;">
+                <button type="submit" class="btn btn-primary" style="flex: 1;">Analyze Decision</button>
+                <button type="button" class="btn btn-secondary" id="nw-reset-btn">Reset</button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Result & History Column -->
+          <div>
+            <div id="nw-result-container">
+              <div class="card text-center" style="padding: 2.5rem 1rem;">
+                <span style="font-size: 2.5rem;">⚖️</span>
+                <h3 class="font-bold text-md mt-2" style="margin-top: 0.5rem;">Decision Engine Ready</h3>
+                <p class="text-xs text-muted mt-1" style="max-width: 320px; margin: 0.5rem auto 0;">
+                  Fill out the assessment on the left to receive a rule-based behavioral verdict based on your remaining budget and days left.
+                </p>
+              </div>
+            </div>
+
+            <!-- Planned Purchase Assessment History -->
+            <div class="card mt-4" style="margin-top: 1.5rem;">
+              <h4 class="font-bold text-sm mb-3" style="margin-bottom: 0.75rem;">Your Planned Purchase List</h4>
+              <div id="nw-history-list"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ==============================================
+           7. INCOME PLANNER VIEW
+           ============================================== -->
+      <section id="view-income-planner" class="app-view">
+        <div class="view-header">
+          <div class="view-title-group">
+            <h1>Allowance & Income Planner</h1>
+            <p>Schedule upcoming money and sync received funds without double-counting</p>
+          </div>
+          <button class="btn btn-primary" id="add-income-schedule-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Schedule Income
+          </button>
+        </div>
+
+        <div class="alert alert-success">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          <div>
+            <strong>Strict Double-Counting Protection:</strong> Expected income is only a planning projection. Only when you click <em>"Mark Received"</em> does it deposit into your active available balance and ledger.
+          </div>
+        </div>
+
+        <!-- Metric Overview -->
+        <div class="grid-2 mb-4" style="margin-bottom: 1.5rem;">
+          <div class="card metric-card">
+            <span class="text-xs text-muted uppercase font-semibold">Total Received This Month</span>
+            <div class="metric-val text-success" id="inc-total-received">₹0</div>
+            <span class="metric-sub">Actively counted in your ledger balance</span>
+          </div>
+          <div class="card metric-card">
+            <span class="text-xs text-muted uppercase font-semibold">Pending Expected Funds</span>
+            <div class="metric-val text-warning" id="inc-total-expected">₹0</div>
+            <span class="metric-sub">Pending arrival (not yet spendable)</span>
+          </div>
+        </div>
+
+        <!-- Schedule Table -->
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Source Title</th>
+                <th>Category</th>
+                <th>Expected Date</th>
+                <th>Amount</th>
+                <th>Status</th>
+                <th class="text-right">Action</th>
+              </tr>
+            </thead>
+            <tbody id="income-schedule-tbody">
+              <!-- Populated by IncomePlanner.renderPage() -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Empty State -->
+        <div id="income-schedule-empty" class="empty-state-card" style="display: none;">
+          <p class="empty-state-text">No scheduled income records. Add your upcoming pocket money, stipend, or scholarship dates!</p>
+          <button class="btn btn-primary btn-sm" onclick="IncomePlanner.openAddModal()">Add Income Schedule</button>
+        </div>
+      </section>
+
+
+      <!-- ==============================================
+           8. INSIGHTS VIEW
+           ============================================== -->
+      <section id="view-insights" class="app-view">
+        <div class="view-header">
+          <div class="view-title-group">
+            <h1>Student Spending Insights</h1>
+            <p>Data-backed habit diagnostics and month-over-month comparisons</p>
+          </div>
+        </div>
+
+        <!-- 6 Metrics Badges -->
+        <div class="grid-6 mb-4" style="margin-bottom: 1.5rem;">
+          <div class="card metric-card">
+            <span class="metric-header">Largest Expense</span>
+            <div class="metric-val text-danger text-sm" id="ins-largest-expense">—</div>
+            <span class="metric-sub">Single biggest purchase</span>
+          </div>
+          <div class="card metric-card">
+            <span class="metric-header">Top Spending Category</span>
+            <div class="metric-val text-sm" id="ins-most-freq-cat">—</div>
+            <span class="metric-sub">Highest transaction frequency</span>
+          </div>
+          <div class="card metric-card">
+            <span class="metric-header">Average Daily Spend</span>
+            <div class="metric-val text-sm" id="ins-avg-daily">₹0</div>
+            <span class="metric-sub">Spent per day elapsed</span>
+          </div>
+          <div class="card metric-card">
+            <span class="metric-header">Savings Rate</span>
+            <div class="metric-val text-sm" id="ins-savings-rate">0%</div>
+            <span class="metric-sub">Income retained</span>
+          </div>
+          <div class="card metric-card">
+            <span class="metric-header">Budget Utilisation</span>
+            <div class="metric-val text-sm" id="ins-budget-util">0%</div>
+            <span class="metric-sub">Of monthly limit</span>
+          </div>
+          <div class="card metric-card">
+            <span class="metric-header">Transactions</span>
+            <div class="metric-val text-sm" id="ins-tx-count">0</div>
+            <span class="metric-sub">Ledger records this month</span>
+          </div>
+        </div>
+
+        <!-- Automated Data-Backed Observations -->
+        <div class="card mb-4" style="margin-bottom: 1.5rem;">
+          <div class="dash-card-header">
+            <h3 class="dash-card-title">Automated Observations</h3>
+            <span class="text-xs text-muted">Computed from actual records</span>
+          </div>
+          <ul class="ins-observations-list" id="ins-observations-list">
+            <!-- Populated by InsightsManager.renderObservations() -->
+          </ul>
+        </div>
+
+        <!-- Charts: Month comparison & Category breakdown -->
+        <div class="grid-2">
+          <div class="card">
+            <div class="dash-card-header">
+              <h3 class="dash-card-title">This Month vs Previous Month</h3>
+              <span class="text-xs text-muted">Category Spend Shift</span>
+            </div>
+            <div id="ins-comparison-chart"></div>
+            <div id="ins-comp-empty-state" class="empty-state-card" style="display: none;">
+              <p class="empty-state-text">Previous month records required for comparative analytics. Demo data contains previous month records to preview!</p>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="dash-card-header">
+              <h3 class="dash-card-title">Expense Category Weights</h3>
+              <span class="text-xs text-muted">Active Month</span>
+            </div>
+            <div id="ins-donut-chart"></div>
+          </div>
+        </div>
+
+        <!-- Daily Spending Bar Chart -->
+        <div class="card mt-4" style="margin-top: 1.5rem;">
+          <div class="dash-card-header">
+            <h3 class="dash-card-title">Daily Spending Distribution</h3>
+            <span class="text-xs text-muted">Day 1 to 31</span>
+          </div>
+          <div id="ins-daily-bar-chart"></div>
+        </div>
+      </section>
+
+
+      <!-- ==============================================
+           9. LEARN & QUIZ VIEW
+           ============================================== -->
+      <section id="view-learn" class="app-view">
+        <div class="view-header">
+          <div class="view-title-group">
+            <h1>Financial Learning Corner</h1>
+            <p>Practical student money habits, impulse hacks, and interactive quiz</p>
+          </div>
+          <span class="badge badge-success text-sm" id="lessons-completed-count">0 of 6 Completed</span>
+        </div>
+
+        <!-- Lessons Grid -->
+        <div class="grid-3 mb-4" id="lessons-grid" style="margin-bottom: 2rem;">
+          <!-- Populated by LearnManager.renderLessons() -->
+        </div>
+
+        <!-- Interactive Quiz Section -->
+        <div class="card" style="background: linear-gradient(135deg, var(--card-bg), var(--bg-warm));">
+          <div class="dash-card-header">
+            <div>
+              <h3 class="dash-card-title">Student Financial Fitness Quiz</h3>
+              <p class="text-xs text-muted">Test your real-world campus money smarts</p>
+            </div>
+            <span class="badge badge-warning" id="quiz-status-badge">High Score: 0/5</span>
+          </div>
+
+          <!-- Question Card -->
+          <div id="quiz-question-card">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 0.75rem;">
+              <span class="text-xs font-bold text-primary uppercase" id="quiz-q-num">Question 1 of 5</span>
+            </div>
+            <h4 class="font-bold text-md mb-3" id="quiz-q-text" style="margin-bottom: 1rem; line-height: 1.4;"></h4>
+
+            <div id="quiz-options-container"></div>
+
+            <div id="quiz-feedback-box" style="display: none;"></div>
+
+            <div style="margin-top: 1rem; display: flex; justify-content: flex-end;">
+              <button class="btn btn-primary" id="quiz-next-btn" style="display: none;">Next Question →</button>
+            </div>
+          </div>
+
+          <!-- Result Card -->
+          <div id="quiz-result-card" style="display: none; text-align: center; padding: 2rem 1rem;">
+            <span style="font-size: 3rem;">🏆</span>
+            <h3 class="font-bold text-xl mt-2" style="margin-top: 0.5rem;">Quiz Completed!</h3>
+            <p class="text-muted text-sm mt-1">Your Final Score:</p>
+            <div class="text-2xl font-bold text-primary my-2" id="quiz-final-score" style="font-size: 2.25rem; margin: 0.5rem 0;">5 / 5</div>
+            <div class="badge badge-success text-md mb-4" id="quiz-badge-earned">Smart Student Planner</div>
+            <div>
+              <button class="btn btn-primary" id="quiz-restart-btn">Restart Quiz</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ==============================================
+           10. REPORTS VIEW
+           ============================================== -->
+      <section id="view-reports" class="app-view">
+        <div class="view-header no-print">
+          <div class="view-title-group">
+            <h1 id="report-month-title">Monthly Financial Statement</h1>
+            <p>Clean printable summary and offline CSV export</p>
+          </div>
+          <div style="display: flex; gap: 0.5rem;">
+            <button class="btn btn-secondary" id="print-report-btn">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+              Print / Save PDF
+            </button>
+            <button class="btn btn-primary" id="export-csv-btn">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Download CSV
+            </button>
+          </div>
+        </div>
+
+        <!-- Monthly Financial Summary Cards -->
+        <div class="grid-4 mb-4" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
+          <div class="card">
+            <span class="text-xs text-muted uppercase font-semibold">Total Income</span>
+            <div class="font-bold text-xl text-success" id="rep-income">₹0</div>
+          </div>
+          <div class="card">
+            <span class="text-xs text-muted uppercase font-semibold">Total Expenses</span>
+            <div class="font-bold text-xl text-danger" id="rep-expenses">₹0</div>
+          </div>
+          <div class="card">
+            <span class="text-xs text-muted uppercase font-semibold">Net Cash Flow</span>
+            <div class="font-bold text-xl" id="rep-cashflow">₹0</div>
+          </div>
+          <div class="card">
+            <span class="text-xs text-muted uppercase font-semibold">Total Savings</span>
+            <div class="font-bold text-xl" id="rep-savings">₹0</div>
+          </div>
+        </div>
+
+        <!-- Category Spending Table -->
+        <div class="card mb-4" style="margin-bottom: 1.5rem;">
+          <h3 class="dash-card-title mb-3" style="margin-bottom: 0.75rem;">Category Spending Distribution</h3>
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Category</th>
+                  <th>Transactions</th>
+                  <th>Amount Spent</th>
+                  <th>Share (%)</th>
+                </tr>
+              </thead>
+              <tbody id="rep-cat-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Full Transaction Ledger Table -->
+        <div class="card">
+          <h3 class="dash-card-title mb-3" style="margin-bottom: 0.75rem;">Full Monthly Ledger</h3>
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Description</th>
+                  <th>Category</th>
+                  <th>Type</th>
+                  <th class="text-right">Amount</th>
+                </tr>
+              </thead>
+              <tbody id="rep-tx-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ==============================================
+           11. SETTINGS VIEW
+           ============================================== -->
+      <section id="view-settings" class="app-view">
+        <div class="view-header">
+          <div class="view-title-group">
+            <h1>Settings & Data Management</h1>
+            <p>Customize your profile, preferred currency, and manage offline data</p>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <!-- Profile Settings -->
+          <div class="card">
+            <h3 class="dash-card-title mb-3" style="margin-bottom: 1rem;">Student Profile & Limits</h3>
+            <form id="settings-profile-form">
+              <div class="form-group">
+                <label class="form-label" for="settings-nickname">Student Nickname</label>
+                <input type="text" id="settings-nickname" class="form-input" required>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="settings-currency">Preferred Currency</label>
+                <select id="settings-currency" class="form-select">
+                  <option value="INR">Indian Rupee (₹)</option>
+                  <option value="USD">US Dollar ($)</option>
+                  <option value="EUR">Euro (€)</option>
+                  <option value="GBP">British Pound (£)</option>
+                  <option value="CAD">Canadian Dollar (CA$)</option>
+                  <option value="AUD">Australian Dollar (A$)</option>
+                  <option value="JPY">Japanese Yen (¥)</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="settings-budget">Monthly Budget Limit</label>
+                <input type="number" id="settings-budget" class="form-input" min="1" step="10" required>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="settings-savings-target">Monthly Savings Target</label>
+                <input type="number" id="settings-savings-target" class="form-input" min="0" step="10">
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="settings-living">Living Situation</label>
+                <select id="settings-living" class="form-select">
+                  <option value="hostel">College Hostel</option>
+                  <option value="home">Living with Family / Home</option>
+                  <option value="pg">Paying Guest (PG)</option>
+                  <option value="rented">Rented Flat / Apartment</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="settings-theme-select">Interface Theme</label>
+                <select id="settings-theme-select" class="form-select">
+                  <option value="light">Light Mode (Mint & Forest Green)</option>
+                  <option value="dark">Dark Mode (Deep Slate & Emerald)</option>
+                </select>
+              </div>
+
+              <button type="submit" class="btn btn-primary" style="margin-top: 0.5rem;">Save Preferences</button>
+            </form>
+          </div>
+
+          <!-- Backup, Demo Data & Privacy Notice -->
+          <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+            <!-- Data Management -->
+            <div class="card">
+              <h3 class="dash-card-title mb-3" style="margin-bottom: 1rem;">Offline Backup & Restore</h3>
+              <p class="text-xs text-muted mb-3" style="margin-bottom: 1rem;">
+                All your finances are stored 100% locally on your computer inside browser localStorage. Export regular JSON backups to save or transfer to another device.
+              </p>
+
+              <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+                <button class="btn btn-outline-primary" id="settings-export-json-btn">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                  Export JSON Backup
+                </button>
+
+                <input type="file" id="settings-import-file" accept=".json" style="display: none;">
+                <button class="btn btn-secondary" id="settings-import-json-btn">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                  Restore Backup
+                </button>
+              </div>
+
+              <div style="border-top: 1px solid var(--border-color); margin-top: 1.5rem; padding-top: 1.25rem;">
+                <h4 class="font-bold text-sm mb-2" style="margin-bottom: 0.5rem;">Demo & Reset Controls</h4>
+                <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+                  <button class="btn btn-secondary" id="settings-reset-demo-btn">
+                    Load Demo Data (Alex)
+                  </button>
+                  <button class="btn btn-danger" id="settings-clear-all-btn">
+                    Wipe All App Data
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Privacy & Security Disclaimer -->
+            <div class="card" style="background: var(--bg-warm);">
+              <h4 class="font-bold text-sm mb-2" style="margin-bottom: 0.5rem;">🔒 Privacy & Storage Architecture</h4>
+              <p class="text-xs text-muted mb-2" style="line-height: 1.5;">
+                EDUWALLET requires zero login, zero passwords, and zero external servers. No telemetry or financial transactions leave your browser.
+              </p>
+              <p class="text-xs text-muted" style="line-height: 1.5;">
+                ⚠️ <em>Security Notice:</em> Browser localStorage is unencrypted. Do not enter real credit card numbers, bank passwords, or PINs.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Mobile Bottom Navigation Bar -->
+  <nav class="mobile-bottom-nav">
+    <a href="#dashboard" class="mobile-nav-item" data-nav-route="dashboard">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+      <span>Home</span>
+    </a>
+    <a href="#transactions" class="mobile-nav-item" data-nav-route="transactions">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+      <span>Spends</span>
+    </a>
+    <a href="#budgets" class="mobile-nav-item" data-nav-route="budgets">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></svg>
+      <span>Budgets</span>
+    </a>
+    <a href="#goals" class="mobile-nav-item" data-nav-route="goals">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="2"/></svg>
+      <span>Goals</span>
+    </a>
+    <a href="#daily-spend" class="mobile-nav-item" data-nav-route="daily-spend">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      <span>Daily</span>
+    </a>
+  </nav>
+
+  <!-- Mobile Floating Action Button -->
+  <button class="fab-quick-add btn-quick-add" aria-label="Add Transaction">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+  </button>
+
+</div>
+
+<!-- ==============================================
+     MODALS
+     ============================================== -->
+
+<!-- 1. Transaction Modal (Add / Edit) -->
+<div class="modal-backdrop" id="tx-modal">
+  <div class="modal-dialog">
+    <div class="modal-header">
+      <h2 id="tx-modal-title">Add Transaction</h2>
+      <button class="btn-icon-subtle" data-close-modal aria-label="Close modal">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+
+    <form id="tx-form">
+      <div class="modal-body">
+        <input type="hidden" id="tx-form-id">
+
+        <!-- Type Selector -->
+        <div class="form-group">
+          <label class="form-label">Transaction Type</label>
+          <div class="radio-pill-group">
+            <input type="radio" name="tx-type" id="tx-type-expense" value="expense" checked>
+            <label for="tx-type-expense">Expense (Spend)</label>
+
+            <input type="radio" name="tx-type" id="tx-type-income" value="income">
+            <label for="tx-type-income">Income (Received)</label>
+          </div>
+        </div>
+
+        <!-- Description -->
+        <div class="form-group">
+          <label class="form-label" for="tx-form-desc">Description</label>
+          <input type="text" id="tx-form-desc" class="form-input" placeholder="e.g. Canteen Lunch, Metro Pass, DSA Book" required>
+        </div>
+
+        <!-- Amount & Date Grid -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+          <div class="form-group">
+            <label class="form-label" for="tx-form-amount">Amount</label>
+            <input type="number" id="tx-form-amount" class="form-input" placeholder="0.00" min="0.01" step="any" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="tx-form-date">Date</label>
+            <input type="date" id="tx-form-date" class="form-input" required>
+          </div>
+        </div>
+
+        <!-- Category -->
+        <div class="form-group">
+          <label class="form-label" for="tx-form-category">Category</label>
+          <select id="tx-form-category" class="form-select" required></select>
+        </div>
+
+        <!-- Optional Note -->
+        <div class="form-group">
+          <label class="form-label" for="tx-form-note">Optional Note</label>
+          <input type="text" id="tx-form-note" class="form-input" placeholder="e.g. Split with Rohit, paid via UPI">
+        </div>
+
+        <div id="tx-form-error" class="form-error-msg"></div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-close-modal>Cancel</button>
+        <button type="submit" class="btn btn-primary" id="tx-form-submit-btn">Save Transaction</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- 2. Onboarding Modal (First time student experience) -->
+<div class="modal-backdrop non-dismissible" id="onboarding-modal">
+  <div class="modal-dialog" style="max-width: 560px;">
+    <div class="modal-header">
+      <div>
+        <h2>Welcome to EDUWALLET! 👋</h2>
+        <span class="text-xs text-muted">Let's personalize your student finance dashboard in 30 seconds</span>
+      </div>
+    </div>
+
+    <form id="onboarding-form">
+      <div class="modal-body">
+        <div class="alert alert-success" style="margin-bottom: 1.25rem;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          <div>
+            <strong>Hackathon Judge or First Time?</strong> You can click <em>"Load Demo Student Data"</em> below to test instantly with a complete realistic dataset!
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="ob-nickname">What should we call you? (Nickname)</label>
+          <input type="text" id="ob-nickname" class="form-input" placeholder="e.g. Alex" value="Alex" required>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+          <div class="form-group">
+            <label class="form-label" for="ob-allowance">Monthly Available Money</label>
+            <input type="number" id="ob-allowance" class="form-input" placeholder="8000" value="8000" min="100" step="50" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="ob-currency">Currency</label>
+            <select id="ob-currency" class="form-select">
+              <option value="INR" selected>Indian Rupee (₹)</option>
+              <option value="USD">US Dollar ($)</option>
+              <option value="EUR">Euro (€)</option>
+              <option value="GBP">British Pound (£)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="ob-source">Primary Source of Money</label>
+          <select id="ob-source" class="form-select">
+            <option value="family_allowance" selected>Family Pocket Money / Allowance</option>
+            <option value="scholarship">University Scholarship</option>
+            <option value="internship">Internship Stipend</option>
+            <option value="part_time">Part-time Job</option>
+            <option value="freelance">Freelance Gigs</option>
+            <option value="other_income">Other</option>
+          </select>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+          <div class="form-group">
+            <label class="form-label" for="ob-savings-target">Monthly Savings Target</label>
+            <input type="number" id="ob-savings-target" class="form-input" placeholder="1500" value="1500" min="0" step="50">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="ob-living">Living Situation</label>
+            <select id="ob-living" class="form-select">
+              <option value="hostel" selected>College Hostel</option>
+              <option value="home">At Home with Parents</option>
+              <option value="pg">Paying Guest (PG)</option>
+              <option value="rented">Rented Accommodation</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer" style="justify-content: space-between;">
+        <button type="button" class="btn btn-outline-primary" id="onboarding-demo-btn">
+          ⚡ Load Demo Student Data (Alex)
+        </button>
+        <button type="submit" class="btn btn-primary">
+          Start Fresh Setup →
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- 3. Total Budget Modal -->
+<div class="modal-backdrop" id="total-budget-modal">
+  <div class="modal-dialog">
+    <div class="modal-header">
+      <h2>Edit Monthly Total Budget</h2>
+      <button class="btn-icon-subtle" data-close-modal aria-label="Close">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <form id="total-budget-form">
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label" for="total-budget-input">Total Monthly Budget Amount</label>
+          <input type="number" id="total-budget-input" class="form-input" min="100" step="50" required>
+          <span class="text-xs text-muted mt-1" style="margin-top: 0.35rem; display: block;">
+            This defines your monthly spending ceiling across all categories combined.
+          </span>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-close-modal>Cancel</button>
+        <button type="submit" class="btn btn-primary">Save Monthly Budget</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- 4. Category Budget Modal -->
+<div class="modal-backdrop" id="category-budget-modal">
+  <div class="modal-dialog">
+    <div class="modal-header">
+      <h2 id="cat-budget-modal-title">Set Category Budget</h2>
+      <button class="btn-icon-subtle" data-close-modal aria-label="Close">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <form id="category-budget-form">
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label" for="cat-budget-select">Select Category</label>
+          <select id="cat-budget-select" class="form-select" required></select>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="cat-budget-limit">Category Limit Amount</label>
+          <input type="number" id="cat-budget-limit" class="form-input" placeholder="e.g. 2000" min="10" step="10" required>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-close-modal>Cancel</button>
+        <button type="submit" class="btn btn-primary">Save Limit</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- 5. Savings Goal Modal -->
+<div class="modal-backdrop" id="goal-modal">
+  <div class="modal-dialog">
+    <div class="modal-header">
+      <h2 id="goal-modal-title">Create Savings Goal</h2>
+      <button class="btn-icon-subtle" data-close-modal aria-label="Close">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <form id="goal-form">
+      <div class="modal-body">
+        <input type="hidden" id="goal-form-id">
+        <div class="form-group">
+          <label class="form-label" for="goal-form-name">Goal Name</label>
+          <input type="text" id="goal-form-name" class="form-input" placeholder="e.g. MacBook M3, Goa Grad Trip, Emergency Buffer" required>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+          <div class="form-group">
+            <label class="form-label" for="goal-form-target">Target Amount</label>
+            <input type="number" id="goal-form-target" class="form-input" placeholder="e.g. 60000" min="100" step="50" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="goal-form-date">Target Date (Optional)</label>
+            <input type="date" id="goal-form-date" class="form-input">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="goal-form-icon">Goal Icon</label>
+          <select id="goal-form-icon" class="form-select">
+            <option value="target">🎯 Target</option>
+            <option value="laptop">💻 Tech / Laptop</option>
+            <option value="compass">🧭 Travel / Trip</option>
+            <option value="shield">🛡️ Emergency Buffer</option>
+            <option value="smartphone">📱 Phone Upgrade</option>
+            <option value="book">📚 Course / Certification</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="goal-form-notes">Motivation Notes (Optional)</label>
+          <input type="text" id="goal-form-notes" class="form-input" placeholder="e.g. Save ₹1,500 every month from tutoring">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-close-modal>Cancel</button>
+        <button type="submit" class="btn btn-primary">Save Goal</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- 6. Goal Contribution Modal -->
+<div class="modal-backdrop" id="goal-contrib-modal">
+  <div class="modal-dialog">
+    <div class="modal-header">
+      <h2>Contribute to Savings Goal</h2>
+      <button class="btn-icon-subtle" data-close-modal aria-label="Close">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <form id="goal-contrib-form">
+      <div class="modal-body">
+        <input type="hidden" id="contrib-goal-id">
+        <div class="mb-3" style="margin-bottom: 1rem;">
+          <h3 class="font-bold text-md" id="contrib-goal-name">Goal Name</h3>
+          <span class="text-xs text-muted" id="contrib-current-amt">Current Progress</span>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="contrib-amount-input">Contribution Amount</label>
+          <input type="number" id="contrib-amount-input" class="form-input" placeholder="e.g. 500" min="1" step="any" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="contrib-note-input">Deposit Note (Optional)</label>
+          <input type="text" id="contrib-note-input" class="form-input" placeholder="e.g. Saved from weekend canteen allowance">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-close-modal>Cancel</button>
+        <button type="submit" class="btn btn-primary">Confirm Contribution</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- 7. Income Schedule Modal -->
+<div class="modal-backdrop" id="income-schedule-modal">
+  <div class="modal-dialog">
+    <div class="modal-header">
+      <h2>Schedule Expected Income</h2>
+      <button class="btn-icon-subtle" data-close-modal aria-label="Close">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <form id="income-schedule-form">
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label" for="inc-sched-title">Source Description</label>
+          <input type="text" id="inc-sched-title" class="form-input" placeholder="e.g. Monthly Pocket Money, Stipend, Scholarship" required>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+          <div class="form-group">
+            <label class="form-label" for="inc-sched-amount">Amount</label>
+            <input type="number" id="inc-sched-amount" class="form-input" placeholder="e.g. 6000" min="1" step="any" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="inc-sched-date">Expected Date</label>
+            <input type="date" id="inc-sched-date" class="form-input" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="inc-sched-source">Category Source</label>
+          <select id="inc-sched-source" class="form-select" required></select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="inc-sched-note">Note (Optional)</label>
+          <input type="text" id="inc-sched-note" class="form-input" placeholder="e.g. Transferred by parents on 1st">
+        </div>
+
+        <div class="form-group">
+          <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; cursor: pointer;">
+            <input type="checkbox" id="inc-sched-is-received">
+            <span>Already received this money? (Add immediately to available balance)</span>
+          </label>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-close-modal>Cancel</button>
+        <button type="submit" class="btn btn-primary">Save Income Item</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- 8. Lesson Detail Modal -->
+<div class="modal-backdrop" id="lesson-detail-modal">
+  <div class="modal-dialog" style="max-width: 600px;">
+    <div class="modal-header">
+      <h2 id="lesson-modal-title">Lesson Title</h2>
+      <button class="btn-icon-subtle" data-close-modal aria-label="Close">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="modal-body" id="lesson-modal-body" style="font-size: 0.92rem; line-height: 1.6;"></div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-primary" id="lesson-modal-done-btn">Mark Complete & Continue</button>
+    </div>
+  </div>
+</div>
+
+<!-- 9. Global Confirm Modal -->
+<div class="modal-backdrop" id="confirm-modal">
+  <div class="modal-dialog" style="max-width: 440px;">
+    <div class="modal-header">
+      <h2 id="confirm-modal-title">Confirm Action</h2>
+    </div>
+    <div class="modal-body">
+      <p id="confirm-modal-msg" class="text-muted" style="line-height: 1.5;"></p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" id="confirm-cancel-btn">Cancel</button>
+      <button type="button" class="btn btn-danger" id="confirm-modal-btn">Confirm</button>
+    </div>
+  </div>
+</div>
+
+<!-- Floating Toast Container -->
+<div class="toast-container" id="toast-container"></div>
+
+<!-- Application JavaScript Modules in Execution Order -->
+<script src="js/storage.js"></script>
+<script src="js/calculations.js"></script>
+<script src="js/charts.js"></script>
+<script src="js/transactions.js"></script>
+<script src="js/budgets.js"></script>
+<script src="js/goals.js"></script>
+<script src="js/daily-spend.js"></script>
+<script src="js/need-want.js"></script>
+<script src="js/income-planner.js"></script>
+<script src="js/insights.js"></script>
+<script src="js/learn.js"></script>
+<script src="js/reports.js"></script>
+<script src="js/settings.js"></script>
+<script src="js/app.js"></script>
+
+</body>
+</html>
